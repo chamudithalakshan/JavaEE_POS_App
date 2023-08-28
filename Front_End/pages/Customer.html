@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+
+</head>
+<body style="background-color: #6c757d">
+
+<header>
+
+    <!--nav logo-->
+    <nav class="navbar navbar-expand-lg bg-light" style="background-color: #6c757d">
+        <div class="container-fluid shadow p-3 mb-3 bg-body rounded">
+            <img height="70" src="../assets/image/shopping-cart-svg-png-icon-download-28.png"
+                 width="70">
+            <a class="navbar-brand" href="#"> Food Store</a>
+            <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler" data-bs-target="#navbarSupportedContent"
+                    data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!--links-->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link active" href="#Dashbordform" id="home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Customer.html" id="customer">Customers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Item.html" id="item">Items</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="placeOrder.html" id="placeOrder">Place Order</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#AllOrderform" id="allOrder">All Order details</a>
+                    </li>
+                </ul>
+
+                <!--login logout-->
+                <ul class="navbar-nav me-6 mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link" href="#"></i>
+                            Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link" href="#"></i>
+                            Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+<!--!&#45;&#45;customer content&ndash;&gt;-->
+<main class="container-fluid" id="Customerform">
+    <h1>MANAGE CUSTOMER</h1>
+    <br>
+
+    <section class="row">
+        <div class=" d-flex flex-md-column flex-sm-row">
+            <form class="d-flex flex-column flex-sm-row" role="search">
+                <input aria-label="Search" class="form-control me-2 " id="txtInput" placeholder="Search" type="search">
+                <label class="form-label bg-info" for="txtInput"
+                       style="padding: 8px; padding-right: 8px; border-radius: 5px">Search</label>
+            </form>
+        </div>
+    </section>
+
+    <br>
+
+    <form class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label" for="txtCustomerID">Customer ID :</label>
+            <input class="form-control" id="txtCustomerID" placeholder="Ex: C00-001" type="text">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label" for="txtCustomerName">Customer Name :</label>
+            <input class="form-control" id="txtCustomerName" placeholder="Ex: chamuditha" type="text">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label" for="txtCustomerAddress">Customer Address :</label>
+            <input class="form-control" id="txtCustomerAddress" placeholder="Ex: 123/A, matara." type="text">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label" for="txtCustomerSalary">Customer Salary :</label>
+            <input class="form-control" id="txtCustomerSalary" placeholder="Ex: RS. 50 000" type="text">
+        </div>
+
+    </form>
+
+    <br>
+
+    <section class="row">
+        <div class="container-fluid justify-content-center gap-2 d-flex flex-xxl-row">
+
+            <!-- Button trigger modal -->
+            <button class="btn btn-success " id="btnSaveCustomer" type="button">Save
+                Customer
+            </button>
+
+            <!-- Button trigger modal -->
+            <button class="btn btn-warning" id="btnUpdateCustomer" type="button">Update
+                Customer
+            </button>
+
+            <button class="btn btn-warning" id="btnLoadAll" type="button">Load All
+                Customer
+            </button>
+
+            <!-- Button trigger modal -->
+            <button class="btn btn-danger" id="btnDeleteCustomer" type="button">Delete
+                Customer
+            </button>
+        </div>
+    </section>
+
+    <br><br>
+
+    <section class="container-fluid">
+        <table aria-selected="true" class="table table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">Cus ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Salary</th>
+            </tr>
+            </thead>
+            <tbody id="tblCustomer"></tbody>
+        </table>
+    </section>
+
+</main>
+
+</body>
+</html>

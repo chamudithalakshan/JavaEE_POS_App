@@ -31,13 +31,13 @@
                         <a aria-current="page" class="nav-link active" href="#Dashbordform" id="home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#Customerform" id="customer">Customers</a>
+                        <a class="nav-link" href="pages/Customer.html" id="customer">Customers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#Itemform" id="item">Items</a>
+                        <a class="nav-link" href="pages/Item.html" id="item">Items</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#PlaceOrderform" id="placeOrder">Place Order</a>
+                        <a class="nav-link" href="pages/placeOrder.html" id="placeOrder">Place Order</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#AllOrderform" id="allOrder">All Order details</a>
@@ -127,346 +127,346 @@
 
 </main>
 
-<!--customer content-->
-<main class="container-fluid" id="Customerform">
-    <h1>MANAGE CUSTOMER</h1>
-    <br>
+<!--&lt;!&ndash;customer content&ndash;&gt;-->
+<!--<main class="container-fluid" id="Customerform">-->
+<!--    <h1>MANAGE CUSTOMER</h1>-->
+<!--    <br>-->
 
-    <section class="row">
-        <div class=" d-flex flex-md-column flex-sm-row">
-            <form class="d-flex flex-column flex-sm-row" role="search">
-                <input aria-label="Search" class="form-control me-2 " id="txtInput" placeholder="Search" type="search">
-                <label class="form-label bg-info" for="txtInput"
-                       style="padding: 8px; padding-right: 8px; border-radius: 5px">Search</label>
-            </form>
-        </div>
-    </section>
+<!--    <section class="row">-->
+<!--        <div class=" d-flex flex-md-column flex-sm-row">-->
+<!--            <form class="d-flex flex-column flex-sm-row" role="search">-->
+<!--                <input aria-label="Search" class="form-control me-2 " id="txtInput" placeholder="Search" type="search">-->
+<!--                <label class="form-label bg-info" for="txtInput"-->
+<!--                       style="padding: 8px; padding-right: 8px; border-radius: 5px">Search</label>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </section>-->
 
-    <br>
+<!--    <br>-->
 
-    <form class="row g-3">
-        <div class="col-md-6">
-            <label class="form-label" for="txtCustomerID">Customer ID :</label>
-            <input class="form-control" id="txtCustomerID" placeholder="Ex: C00-001" type="text">
-        </div>
-        <div class="col-md-6">
-            <label class="form-label" for="txtCustomerName">Customer Name :</label>
-            <input class="form-control" id="txtCustomerName" placeholder="Ex: chamuditha" type="text">
-        </div>
-        <div class="col-md-6">
-            <label class="form-label" for="txtCustomerAddress">Customer Address :</label>
-            <input class="form-control" id="txtCustomerAddress" placeholder="Ex: 123/A, matara." type="text">
-        </div>
-        <div class="col-md-6">
-            <label class="form-label" for="txtCustomerSalary">Customer Salary :</label>
-            <input class="form-control" id="txtCustomerSalary" placeholder="Ex: RS. 50 000" type="text">
-        </div>
+<!--    <form class="row g-3">-->
+<!--        <div class="col-md-6">-->
+<!--            <label class="form-label" for="txtCustomerID">Customer ID :</label>-->
+<!--            <input class="form-control" id="txtCustomerID" placeholder="Ex: C00-001" type="text">-->
+<!--        </div>-->
+<!--        <div class="col-md-6">-->
+<!--            <label class="form-label" for="txtCustomerName">Customer Name :</label>-->
+<!--            <input class="form-control" id="txtCustomerName" placeholder="Ex: chamuditha" type="text">-->
+<!--        </div>-->
+<!--        <div class="col-md-6">-->
+<!--            <label class="form-label" for="txtCustomerAddress">Customer Address :</label>-->
+<!--            <input class="form-control" id="txtCustomerAddress" placeholder="Ex: 123/A, matara." type="text">-->
+<!--        </div>-->
+<!--        <div class="col-md-6">-->
+<!--            <label class="form-label" for="txtCustomerSalary">Customer Salary :</label>-->
+<!--            <input class="form-control" id="txtCustomerSalary" placeholder="Ex: RS. 50 000" type="text">-->
+<!--        </div>-->
 
-    </form>
+<!--    </form>-->
 
-    <br>
+<!--    <br>-->
 
-    <section class="row">
-        <div class="container-fluid justify-content-center gap-2 d-flex flex-xxl-row">
+<!--    <section class="row">-->
+<!--        <div class="container-fluid justify-content-center gap-2 d-flex flex-xxl-row">-->
 
-            <!-- Button trigger modal -->
-            <button class="btn btn-success " id="btnSaveCustomer" type="button">Save
-                Customer
-            </button>
+<!--            &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--            <button class="btn btn-success " id="btnSaveCustomer" type="button">Save-->
+<!--                Customer-->
+<!--            </button>-->
 
-            <!-- Button trigger modal -->
-            <button class="btn btn-warning" id="btnUpdateCustomer" type="button">Update
-                Customer
-            </button>
+<!--            &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--            <button class="btn btn-warning" id="btnUpdateCustomer" type="button">Update-->
+<!--                Customer-->
+<!--            </button>-->
 
-            <button class="btn btn-warning" id="btnLoadAll" type="button">Load All
-                Customer
-            </button>
+<!--            <button class="btn btn-warning" id="btnLoadAll" type="button">Load All-->
+<!--                Customer-->
+<!--            </button>-->
 
-            <!-- Button trigger modal -->
-            <button class="btn btn-danger" id="btnDeleteCustomer" type="button">Delete
-                Customer
-            </button>
-        </div>
-    </section>
+<!--            &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--            <button class="btn btn-danger" id="btnDeleteCustomer" type="button">Delete-->
+<!--                Customer-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </section>-->
 
-    <br><br>
+<!--    <br><br>-->
 
-    <section class="container-fluid">
-        <table aria-selected="true" class="table table-striped">
-            <thead class="table-dark">
-            <tr>
-                <th scope="col">Cus ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Salary</th>
-            </tr>
-            </thead>
-            <tbody id="tblCustomer"></tbody>
-        </table>
-    </section>
+<!--    <section class="container-fluid">-->
+<!--        <table aria-selected="true" class="table table-striped">-->
+<!--            <thead class="table-dark">-->
+<!--            <tr>-->
+<!--                <th scope="col">Cus ID</th>-->
+<!--                <th scope="col">Name</th>-->
+<!--                <th scope="col">Address</th>-->
+<!--                <th scope="col">Salary</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody id="tblCustomer"></tbody>-->
+<!--        </table>-->
+<!--    </section>-->
 
-</main>
+<!--</main>-->
 
-<!--item content-->
-<main class="container-fluid" id="Itemform">
-    <h1>MANAGE ITEMS</h1>
-    <br>
+<!--&lt;!&ndash;item content&ndash;&gt;-->
+<!--<main class="container-fluid" id="Itemform">-->
+<!--    <h1>MANAGE ITEMS</h1>-->
+<!--    <br>-->
 
-    <section class="row">
-        <div class=" d-flex flex-md-column flex-sm-row">
-            <form class="d-flex flex-column flex-sm-row" role="search">
-                <input aria-label="Search" class="form-control me-2 " id="txtInputItem" placeholder="Search"
-                       type="search">
-                <label class="form-label bg-info" for="txtInputItem"
-                       style="padding: 8px; padding-right: 8px; border-radius: 5px">Search</label>
-            </form>
-        </div>
-    </section>
+<!--    <section class="row">-->
+<!--        <div class=" d-flex flex-md-column flex-sm-row">-->
+<!--            <form class="d-flex flex-column flex-sm-row" role="search">-->
+<!--                <input aria-label="Search" class="form-control me-2 " id="txtInputItem" placeholder="Search"-->
+<!--                       type="search">-->
+<!--                <label class="form-label bg-info" for="txtInputItem"-->
+<!--                       style="padding: 8px; padding-right: 8px; border-radius: 5px">Search</label>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </section>-->
 
-    <br>
+<!--    <br>-->
 
-    <form class="row g-3">
-        <div class="col-md-6">
-            <label class="form-label" for="txtItemCode">Item Code :</label>
-            <input class="form-control" id="txtItemCode" placeholder="Ex: I00-001" type="text">
-        </div>
-        <div class="col-md-6">
-            <label class="form-label" for="txtItemName">Item Name :</label>
-            <input class="form-control" id="txtItemName" placeholder="Ex: Sugar" type="text">
-        </div>
-        <div class="col-md-6">
-            <label class="form-label" for="txtQTY">Quntity :</label>
-            <input class="form-control" id="txtQTY" placeholder="Ex: 50Kg" type="text">
-        </div>
-        <div class="col-md-6">
-            <label class="form-label" for="txtUnitPrice">Unit Price :</label>
-            <input class="form-control" id="txtUnitPrice" placeholder="Ex: RS. 10 000" type="text">
-        </div>
-    </form>
+<!--    <form class="row g-3">-->
+<!--        <div class="col-md-6">-->
+<!--            <label class="form-label" for="txtItemCode">Item Code :</label>-->
+<!--            <input class="form-control" id="txtItemCode" placeholder="Ex: I00-001" type="text">-->
+<!--        </div>-->
+<!--        <div class="col-md-6">-->
+<!--            <label class="form-label" for="txtItemName">Item Name :</label>-->
+<!--            <input class="form-control" id="txtItemName" placeholder="Ex: Sugar" type="text">-->
+<!--        </div>-->
+<!--        <div class="col-md-6">-->
+<!--            <label class="form-label" for="txtQTY">Quntity :</label>-->
+<!--            <input class="form-control" id="txtQTY" placeholder="Ex: 50Kg" type="text">-->
+<!--        </div>-->
+<!--        <div class="col-md-6">-->
+<!--            <label class="form-label" for="txtUnitPrice">Unit Price :</label>-->
+<!--            <input class="form-control" id="txtUnitPrice" placeholder="Ex: RS. 10 000" type="text">-->
+<!--        </div>-->
+<!--    </form>-->
 
-    <br>
+<!--    <br>-->
 
-    <section class="row">
-        <div class="container-fluid justify-content-center gap-4 d-flex flex-xxl-row">
-            <!-- Button trigger modal -->
-            <button class="btn btn-success " id="btnSaveItem" type="button">Save
-                Item
-            </button>
+<!--    <section class="row">-->
+<!--        <div class="container-fluid justify-content-center gap-4 d-flex flex-xxl-row">-->
+<!--            &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--            <button class="btn btn-success " id="btnSaveItem" type="button">Save-->
+<!--                Item-->
+<!--            </button>-->
 
-            <!-- Button trigger modal -->
-            <button class="btn btn-warning" id="btnUpdateItem" type="button">Update
-                Item
-            </button>
-            <!--      load all data to table-->
-            <button class="btn btn-warning" id="btnLoadAllItem" type="button">load all
-                Item
-            </button>
+<!--            &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--            <button class="btn btn-warning" id="btnUpdateItem" type="button">Update-->
+<!--                Item-->
+<!--            </button>-->
+<!--            &lt;!&ndash;      load all data to table&ndash;&gt;-->
+<!--            <button class="btn btn-warning" id="btnLoadAllItem" type="button">load all-->
+<!--                Item-->
+<!--            </button>-->
 
-            <!-- Button trigger modal -->
-            <button class="btn btn-danger" id="btnDeleteIItem" type="button">Delete
-                Item
-            </button>
-        </div>
-    </section>
+<!--            &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--            <button class="btn btn-danger" id="btnDeleteIItem" type="button">Delete-->
+<!--                Item-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </section>-->
 
-    <br><br>
+<!--    <br><br>-->
 
-    <section class="container-fluid">
-        <table class="table table-striped">
-            <thead class="table-dark">
-            <tr>
-                <th scope="col">Item Code</th>
-                <th scope="col">Item Name</th>
-                <th scope="col">Quntity</th>
-                <th scope="col">Unit Price</th>
-            </tr>
-            </thead>
-            <tbody id="tblItems"></tbody>
-        </table>
-    </section>
+<!--    <section class="container-fluid">-->
+<!--        <table class="table table-striped">-->
+<!--            <thead class="table-dark">-->
+<!--            <tr>-->
+<!--                <th scope="col">Item Code</th>-->
+<!--                <th scope="col">Item Name</th>-->
+<!--                <th scope="col">Quntity</th>-->
+<!--                <th scope="col">Unit Price</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody id="tblItems"></tbody>-->
+<!--        </table>-->
+<!--    </section>-->
 
-</main>
+<!--</main>-->
 
-<!--Place Order content-->
-<main class="container-fluid" id="PlaceOrderform">
-    <h1>PLACE ORDER</h1>
+<!--&lt;!&ndash;Place Order content&ndash;&gt;-->
+<!--<main class="container-fluid" id="PlaceOrderform">-->
+<!--    <h1>PLACE ORDER</h1>-->
 
-    <section class="row justify-content-center">
-        <div class="row justify-content-evenly ">
+<!--    <section class="row justify-content-center">-->
+<!--        <div class="row justify-content-evenly ">-->
 
-            <!--invoice section-->
-            <div class="col-10 col-md-9 col-lg-3 p-3 mt-1 bg-white shadow-lg " style="height: max-content">
-                <h3 class="text-center bg-success p-2 text-light ">Invoice</h3>
-                <div class="row mt-1">
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="orderId">Order ID:</label>
-                        <input class="form-control" id="orderId" type="text">
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="orderDate">Order Date:</label>
-                        <input class="form-control" id="orderDate" type="date">
-                    </div>
-                </div>
-                <div class="row mt-1">
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="inputCustomerID">Customer ID:</label>
-                        <select aria-label="Default select example" class="form-select" id="inputCustomerID"
-                                onchange="setDetails(this.value)">
+<!--            &lt;!&ndash;invoice section&ndash;&gt;-->
+<!--            <div class="col-10 col-md-9 col-lg-3 p-3 mt-1 bg-white shadow-lg " style="height: max-content">-->
+<!--                <h3 class="text-center bg-success p-2 text-light ">Invoice</h3>-->
+<!--                <div class="row mt-1">-->
+<!--                    <div class="col-12 col-md-6 col-lg-6">-->
+<!--                        <label class="form-label" for="orderId">Order ID:</label>-->
+<!--                        <input class="form-control" id="orderId" type="text">-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-md-6 col-lg-6">-->
+<!--                        <label class="form-label" for="orderDate">Order Date:</label>-->
+<!--                        <input class="form-control" id="orderDate" type="date">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row mt-1">-->
+<!--                    <div class="col-12 col-md-6 col-lg-6">-->
+<!--                        <label class="form-label" for="inputCustomerID">Customer ID:</label>-->
+<!--                        <select aria-label="Default select example" class="form-select" id="inputCustomerID"-->
+<!--                                onchange="setDetails(this.value)">-->
 
-                        </select>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="customerName">Name:</label>
-                        <input class="form-control" disabled id="customerName" type="text">
-                    </div>
-                </div>
-                <div class="row mt-1">
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="customerAddress">Address:</label>
-                        <input class="form-control" disabled id="customerAddress" type="text">
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="customerSalary">Salary:</label>
-                        <input class="form-control" disabled id="customerSalary" type="text">
-                    </div>
-                </div>
-            </div>
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-md-6 col-lg-6">-->
+<!--                        <label class="form-label" for="customerName">Name:</label>-->
+<!--                        <input class="form-control" disabled id="customerName" type="text">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row mt-1">-->
+<!--                    <div class="col-12 col-md-6 col-lg-6">-->
+<!--                        <label class="form-label" for="customerAddress">Address:</label>-->
+<!--                        <input class="form-control" disabled id="customerAddress" type="text">-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-md-6 col-lg-6">-->
+<!--                        <label class="form-label" for="customerSalary">Salary:</label>-->
+<!--                        <input class="form-control" disabled id="customerSalary" type="text">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <!--items-->
-            <div class="col-10 col-md-5 col-lg-3 p-3 mt-1 bg-white shadow-lg " style="height: max-content">
-                <h3 class="text-center bg-success p-2 text-light">Items</h3>
-                <div class="row mt-1">
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="inputItemCode">Item Code:</label>
-                        <select aria-label="Default select example" class="form-select" id="inputItemCode"
-                                onchange="setIDetails(this.value)">
-                            <option selected>Select Item</option>
-                        </select>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="itemName">Item Name:</label>
-                        <input class="form-control" disabled id="itemName" type="text">
-
-
-                    </div>
-                </div>
-                <div class="row mt-1">
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="itemPrice">Unit Price:</label>
-                        <input class="form-control" disabled id="itemPrice" type="text">
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="qtyOnHand">Qty On Hand:</label>
-                        <input class="form-control" disabled id="qtyOnHand" type="text">
-                    </div>
-                </div>
-                <div class="row mt-1">
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="buyQty">Order Quntity:</label>
-                        <input class="form-control small" id="buyQty" type="text">
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6"><br>
-                        <button class="btn btn-warning rounded-5" id="btnAddToCart" type="submit">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-
-            <!--total price-->
-            <div class="col-10 col-md-10 col-lg-3 p-3 mt-3 bg-white shadow-lg" style="height: max-content">
-                <div class="row">
-                    <div class="col-12 col-md-12 col-lg-12">
-                        <h3 class="text-start p-1">Total: <span class="text-start text-danger" id="rupees">Rs. <span
-                                class="text-start text-danger" id="txtTotal"></span></span>
-                        </h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="txtCash">Cash (Rs.):</label>
-                        <input class="form-control" id="txtCash" type="text">
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <label class="form-label" for="txtDiscount">Discount:</label>
-                        <input class="form-control" id="txtDiscount" type="text">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-12 col-lg-12">
-                        <h3 class="text-start p-1">Sub Total: Rs. <span class="text-center p-1" id="txtSubTotal"></span>
-                        </h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-12 col-lg-12">
-                        <label class="form-label" for="txtBalance">Balance (Rs.):</label>
-                        <input class="form-control" disabled id="txtBalance" type="text">
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <button class="btn btn-danger rounded-5" id="btnPlaceOrder" type="submit">Place Order</button>
-                </div>
-            </div>
-
-            <!-- add to cart table-->
-            <section class="container-fluid mt-4">
-                <table class="table table-striped">
-                    <thead class="table-success">
-                    <tr>
-                        <th scope="col">Item Code</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Unit Price</th>
-                        <th scope="col">QTY</th>
-                        <th scope="col">Total</th>
-                    </tr>
-                    </thead>
-                    <tbody id="orderTable">
+<!--            &lt;!&ndash;items&ndash;&gt;-->
+<!--            <div class="col-10 col-md-5 col-lg-3 p-3 mt-1 bg-white shadow-lg " style="height: max-content">-->
+<!--                <h3 class="text-center bg-success p-2 text-light">Items</h3>-->
+<!--                <div class="row mt-1">-->
+<!--                    <div class="col-12 col-md-6 col-lg-6">-->
+<!--                        <label class="form-label" for="inputItemCode">Item Code:</label>-->
+<!--                        <select aria-label="Default select example" class="form-select" id="inputItemCode"-->
+<!--                                onchange="setIDetails(this.value)">-->
+<!--                            <option selected>Select Item</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-md-6 col-lg-6">-->
+<!--                        <label class="form-label" for="itemName">Item Name:</label>-->
+<!--                        <input class="form-control" disabled id="itemName" type="text">-->
 
 
-                    </tbody>
-                </table>
-            </section>
-        </div>
-    </section>
-</main>
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row mt-1">-->
+<!--                    <div class="col-12 col-md-6 col-lg-6">-->
+<!--                        <label class="form-label" for="itemPrice">Unit Price:</label>-->
+<!--                        <input class="form-control" disabled id="itemPrice" type="text">-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-md-6 col-lg-6">-->
+<!--                        <label class="form-label" for="qtyOnHand">Qty On Hand:</label>-->
+<!--                        <input class="form-control" disabled id="qtyOnHand" type="text">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row mt-1">-->
+<!--                    <div class="col-12 col-md-6 col-lg-6">-->
+<!--                        <label class="form-label" for="buyQty">Order Quntity:</label>-->
+<!--                        <input class="form-control small" id="buyQty" type="text">-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-md-6 col-lg-6"><br>-->
+<!--                        <button class="btn btn-warning rounded-5" id="btnAddToCart" type="submit">Add to Cart</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
 
-<!--All Order content-->
-<main class="container-fluid" id="AllOrderform">
-    <br>
-    <h1>ALL ORDER DETAILS</h1>
-    <br>
+<!--            &lt;!&ndash;total price&ndash;&gt;-->
+<!--            <div class="col-10 col-md-10 col-lg-3 p-3 mt-3 bg-white shadow-lg" style="height: max-content">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-12 col-md-12 col-lg-12">-->
+<!--                        <h3 class="text-start p-1">Total: <span class="text-start text-danger" id="rupees">Rs. <span-->
+<!--                                class="text-start text-danger" id="txtTotal"></span></span>-->
+<!--                        </h3>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                    <div class="col-12 col-md-6 col-lg-6">-->
+<!--                        <label class="form-label" for="txtCash">Cash (Rs.):</label>-->
+<!--                        <input class="form-control" id="txtCash" type="text">-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-md-6 col-lg-6">-->
+<!--                        <label class="form-label" for="txtDiscount">Discount:</label>-->
+<!--                        <input class="form-control" id="txtDiscount" type="text">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                    <div class="col-12 col-md-12 col-lg-12">-->
+<!--                        <h3 class="text-start p-1">Sub Total: Rs. <span class="text-center p-1" id="txtSubTotal"></span>-->
+<!--                        </h3>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                    <div class="col-12 col-md-12 col-lg-12">-->
+<!--                        <label class="form-label" for="txtBalance">Balance (Rs.):</label>-->
+<!--                        <input class="form-control" disabled id="txtBalance" type="text">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <br>-->
+<!--                <div class="row">-->
+<!--                    <button class="btn btn-danger rounded-5" id="btnPlaceOrder" type="submit">Place Order</button>-->
+<!--                </div>-->
+<!--            </div>-->
 
-    <section class="row">
-        <div class=" d-flex flex-md-column flex-sm-row">
-            <form class="d-flex flex-column flex-sm-row" role="search">
-                <input aria-label="Search" class="form-control me-2 " id="txtAllDetalsInput" placeholder="Search"
-                       type="search">
-                <label class="form-label bg-info" for="txtInput"
-                       style="padding: 8px; padding-right: 8px; border-radius: 5px">Search</label>
-            </form>
-        </div>
-    </section>
+<!--            &lt;!&ndash; add to cart table&ndash;&gt;-->
+<!--            <section class="container-fluid mt-4">-->
+<!--                <table class="table table-striped">-->
+<!--                    <thead class="table-success">-->
+<!--                    <tr>-->
+<!--                        <th scope="col">Item Code</th>-->
+<!--                        <th scope="col">Item Name</th>-->
+<!--                        <th scope="col">Unit Price</th>-->
+<!--                        <th scope="col">QTY</th>-->
+<!--                        <th scope="col">Total</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody id="orderTable">-->
 
-    <br><br>
 
-    <section class="container-fluid">
-        <table class="table table-striped">
-            <thead class="table-dark">
-            <tr>
-                <th scope="col">Order ID</th>
-                <th scope="col">Order Date</th>
-                <th scope="col">Customer ID</th>
-                <th scope="col">Discount</th>
-                <th scope="col">Total Price</th>
-            </tr>
-            </thead>
-            <tbody id="tblAllOrders">
-            </tbody>
-        </table>
-    </section>
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </section>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--</main>-->
 
-</main>
+<!--&lt;!&ndash;All Order content&ndash;&gt;-->
+<!--<main class="container-fluid" id="AllOrderform">-->
+<!--    <br>-->
+<!--    <h1>ALL ORDER DETAILS</h1>-->
+<!--    <br>-->
+
+<!--    <section class="row">-->
+<!--        <div class=" d-flex flex-md-column flex-sm-row">-->
+<!--            <form class="d-flex flex-column flex-sm-row" role="search">-->
+<!--                <input aria-label="Search" class="form-control me-2 " id="txtAllDetalsInput" placeholder="Search"-->
+<!--                       type="search">-->
+<!--                <label class="form-label bg-info" for="txtInput"-->
+<!--                       style="padding: 8px; padding-right: 8px; border-radius: 5px">Search</label>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </section>-->
+
+<!--    <br><br>-->
+
+<!--    <section class="container-fluid">-->
+<!--        <table class="table table-striped">-->
+<!--            <thead class="table-dark">-->
+<!--            <tr>-->
+<!--                <th scope="col">Order ID</th>-->
+<!--                <th scope="col">Order Date</th>-->
+<!--                <th scope="col">Customer ID</th>-->
+<!--                <th scope="col">Discount</th>-->
+<!--                <th scope="col">Total Price</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody id="tblAllOrders">-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </section>-->
+
+<!--</main>-->
 
 
 <!--import js-->
