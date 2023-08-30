@@ -6,6 +6,8 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
 
+
+
 </head>
 <body style="background-color: #6c757d">
 
@@ -62,7 +64,7 @@
 
 
 <!--!&#45;&#45;customer content&ndash;&gt;-->
-<main class="container-fluid" id="Customerform">
+<main class="container-fluid" id="CustomerformID">
     <h1>MANAGE CUSTOMER</h1>
     <br>
 
@@ -78,22 +80,22 @@
 
     <br>
 
-    <form class="row g-3">
+    <form id="customerForm" class="row g-3">
         <div class="col-md-6">
             <label class="form-label" for="txtCustomerID">Customer ID :</label>
-            <input class="form-control" id="txtCustomerID" placeholder="Ex: C00-001" type="text">
+            <input name="cusID" class="form-control" id="txtCustomerID" placeholder="Ex: C00-001" type="text">
         </div>
         <div class="col-md-6">
             <label class="form-label" for="txtCustomerName">Customer Name :</label>
-            <input class="form-control" id="txtCustomerName" placeholder="Ex: chamuditha" type="text">
+            <input name="cusName" class="form-control" id="txtCustomerName" placeholder="Ex: chamuditha" type="text">
         </div>
         <div class="col-md-6">
             <label class="form-label" for="txtCustomerAddress">Customer Address :</label>
-            <input class="form-control" id="txtCustomerAddress" placeholder="Ex: 123/A, matara." type="text">
+            <input name="cusAddress" class="form-control" id="txtCustomerAddress" placeholder="Ex: 123/A, matara." type="text">
         </div>
         <div class="col-md-6">
             <label class="form-label" for="txtCustomerSalary">Customer Salary :</label>
-            <input class="form-control" id="txtCustomerSalary" placeholder="Ex: RS. 50 000" type="text">
+            <input name="cusSalary" class="form-control" id="txtCustomerSalary" placeholder="Ex: RS. 50 000" type="text">
         </div>
 
     </form>
@@ -141,6 +143,105 @@
     </section>
 
 </main>
+<script src="../assets/js/jquery-3.6.1.min.js"></script>
+<script src="../assets/js/bootstrap.js"></script>
+
+<script>
+
+    getAllCustomers();
+
+    $("#btnLoadAll").click(function () {
+        getAllCustomers();
+    });
+
+    function getAllCustomers() {
+        $("#tblCustomer").empty();
+        <!--send ajax request to the customer servlet using jQuery-->
+        $.ajax({
+            url: 'http://localhost:8080/asignment/pages/customer',
+            dataType: "json",
+            success: function (customers) {
+                for (let i in customers) {
+                    let cus = customers[i];
+                    let id = cus.cid;
+                    let name = cus.name;
+                    let address = cus.address;
+                    let salary = cus.salary;
+                    let row = `<tr><td>${id}</td><td>${name}</td><td>${address}</td><td>${salary}</td></tr>`;
+                    $("#tblCustomer").append(row);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+    $("#btnSaveCustomer").click(function () {
+        let formData = $("#customerForm").serialize();
+        $.ajax({
+            url: "http://localhost:8080/asignment/pages/customer",
+            method: "post",
+            data: formData,
+            success: function (res) {
+                console.log(res);
+                alert(res.message);
+                getAllCustomers();
+            },
+            error: function (error) {
+                alert(error.responseJSON.message);
+            }
+        });
+
+    });
+
+    $("#btnUpdateCustomer").click(function () {
+        let id = $("#txtCustomerID").val();
+        let name = $("#txtCustomerName").val();
+        let address = $("#txtCustomerAddress").val();
+        let salary = $("#txtCustomerSalary").val();
+
+        //json object
+        let object = {
+            "cusID": id,
+            "cusName": name,
+            "cusAddress": address,
+            "cusSalary": salary
+        }
+
+        $.ajax({
+            url: "http://localhost:8080/asignment/pages/customer",
+            method: 'put',
+            contentType: "application/json",
+            data: JSON.stringify(object),
+            success: function (resp) {
+                alert(resp.message);
+                getAllCustomers();
+            },
+            error: function (error) {
+                alert(error.responseJSON.message);
+            }
+        });
+    });
+
+    $("#btnDeleteCustomer").click(function () {
+        let id = $("#txtCustomerID").val();
+        $.ajax({
+            url: 'http://localhost:8080/asignment/pages/customer?cusID=' + id,
+            method: 'delete',
+            success: function (resp) {
+                alert(resp.message);
+                getAllCustomers();
+            },
+            error: function (error) {
+                alert(error.responseJSON.message);
+            }
+        });
+    });
+
+
+</script>
+
 
 </body>
 </html>

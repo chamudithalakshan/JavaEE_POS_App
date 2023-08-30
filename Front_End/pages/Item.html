@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
 
 
+
 </head>
 <header>
 
@@ -59,13 +60,13 @@
 
 
 <body>
-<main class="container-fluid" id="Itemform">
+<main class="container-fluid" id="ItemformId">
     <h1>MANAGE ITEMS</h1>
     <br>
 
     <section class="row">
         <div class=" d-flex flex-md-column flex-sm-row">
-            <form class="d-flex flex-column flex-sm-row" role="search">
+            <form  class="d-flex flex-column flex-sm-row" role="search">
                 <input aria-label="Search" class="form-control me-2 " id="txtInputItem" placeholder="Search"
                        type="search">
                 <label class="form-label bg-info" for="txtInputItem"
@@ -76,22 +77,22 @@
 
     <br>
 
-    <form class="row g-3">
+    <form id="itemForm" class="row g-3">
         <div class="col-md-6">
             <label class="form-label" for="txtItemCode">Item Code :</label>
-            <input class="form-control" id="txtItemCode" placeholder="Ex: I00-001" type="text">
+            <input name="code" class="form-control" id="txtItemCode" placeholder="Ex: I00-001" type="text">
         </div>
         <div class="col-md-6">
             <label class="form-label" for="txtItemName">Item Name :</label>
-            <input class="form-control" id="txtItemName" placeholder="Ex: Sugar" type="text">
+            <input name="itemName" class="form-control" id="txtItemName" placeholder="Ex: Sugar" type="text">
         </div>
         <div class="col-md-6">
             <label class="form-label" for="txtQTY">Quntity :</label>
-            <input class="form-control" id="txtQTY" placeholder="Ex: 50Kg" type="text">
+            <input name="quantity" class="form-control" id="txtQTY" placeholder="Ex: 50Kg" type="text">
         </div>
         <div class="col-md-6">
             <label class="form-label" for="txtUnitPrice">Unit Price :</label>
-            <input class="form-control" id="txtUnitPrice" placeholder="Ex: RS. 10 000" type="text">
+            <input name="unitPrice" class="form-control" id="txtUnitPrice" placeholder="Ex: RS. 10 000" type="text">
         </div>
     </form>
 
@@ -137,5 +138,113 @@
     </section>
 
 </main>
+<script src="../assets/js/bootstrap.js"></script>
+<script src="../assets/js/jquery-3.6.1.min.js"></script>
+
+<script>
+
+
+    getAllItems();
+
+    $("#btnLoadAllItem").click(function () {
+        getAllItems();
+    });
+
+    function getAllItems() {
+        $("#tblItems").empty();
+        <!--send ajax request to the customer servlet using jQuery-->
+        $.ajax({
+            url: 'http://localhost:8080/asignment/pages/item',
+            dataType: "json",
+            success: function (items) {
+                for (let i in items) {
+                    let itm = items[i];
+                    let code = itm.code;
+                    let itemName = itm.item_name;
+                    let quantity = itm.quantity;
+                    let unitPrice = itm.unit_price;
+                    let row = `<tr><td>${code}</td><td>${itemName}</td><td>${quantity}</td><td>${unitPrice}</td></tr>`;
+                    $("#tblItems").append(row);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+
+
+
+
+
+    $("#btnSaveItem").click(function () {
+        let formData = $("#itemForm").serialize();
+        $.ajax({
+            url: "http://localhost:8080/asignment/pages/item",
+            method: "post",
+            data: formData,
+            success: function (res) {
+                console.log(res);
+                alert(res.message);
+                getAllItems();
+            },
+            error: function (error) {
+                alert(error.responseJSON.message);
+            }
+        });
+
+    });
+
+    $("#btnUpdateItem").click(function () {
+        let id = $("#txtItemCode").val();
+        let name = $("#txtItemName").val();
+        let address = $("#txtQTY").val();
+        let salary = $("#txtUnitPrice").val();
+
+        //json object
+        let object = {
+            "code": id,
+            "itemName": name,
+            "quantity": address,
+            "unitPrice": salary
+        }
+
+        $.ajax({
+            url: "http://localhost:8080/asignment/pages/item",
+            method: 'put',
+            contentType: "application/json",
+            data: JSON.stringify(object),
+            success: function (resp) {
+                alert(resp.message);
+                getAllItems();
+            },
+            error: function (error) {
+                alert(error.responseJSON.message);
+            }
+        });
+    });
+
+    $("#btnDeleteIItem").click(function () {
+        let code = $("#txtItemCode").val();
+        $.ajax({
+            url: 'http://localhost:8080/asignment/pages/item?code=' + code,
+            method: 'delete',
+            success: function (resp) {
+                alert(resp.message);
+                getAllItems();
+            },
+            error: function (error) {
+                alert(error.responseJSON.message);
+            }
+        });
+    });
+
+
+
+
+</script>
+
+
 </body>
 </html>
