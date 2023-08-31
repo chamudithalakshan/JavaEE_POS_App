@@ -7,14 +7,26 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
 
-@WebServlet(urlPatterns = {"/pages/customer"})
+@WebServlet(urlPatterns = {"/pages/customer/*"})
 public class CustomerServletAPI extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.addHeader("Access-Control-Allow-Origin", "*");
         resp.addHeader("Content-Type", "application/json");
+        String pathInfo = req.getPathInfo();
 
+        if (pathInfo == null) {
+            getAllCustomers(req, resp);
+        } else {
+            getSpecificCustomer(req, resp, pathInfo.substring(1)); // Assuming pathInfo is "/customerId"
+        }
+
+
+
+    }
+
+    private void getAllCustomers(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/spa", "root", "1234");
@@ -42,9 +54,44 @@ public class CustomerServletAPI extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    private void getSpecificCustomer(HttpServletRequest req, HttpServletResponse resp, String customerId) throws ServletException, IOException {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/spa", "root", "1234");
+
+                PreparedStatement pstm = connection.prepareStatement("SELECT * FROM Customer WHERE cid = ?");
+                pstm.setString(1, customerId);
+                ResultSet rst = pstm.executeQuery();
+
+                if (rst.next()) {
+                    String id = rst.getString(1);
+                    String name = rst.getString(2);
+                    String address = rst.getString(3);
+                    String salary = rst.getString(4);
+
+                    JsonObjectBuilder customerObject = Json.createObjectBuilder();
+                    customerObject.add("cid", id);
+                    customerObject.add("name", name);
+                    customerObject.add("address", address);
+                    customerObject.add("salary", salary);
+
+                    resp.getWriter().print(customerObject.build());
+
+            } else {
+                // Fetching all customers as you did before
+                // ... (Rest of your code to fetch all customers)
+            }
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.sql.*;
 
 
-@WebServlet(urlPatterns = {"/pages/item"})
+@WebServlet(urlPatterns = {"/pages/item/*"})
 public class ItemServletAPI extends HttpServlet {
 
     @Override
@@ -57,41 +57,6 @@ public class ItemServletAPI extends HttpServlet {
 
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        resp.addHeader("Access-Control-Allow-Origin", "*");
-        resp.addHeader("Content-Type", "application/json");
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/spa", "root", "1234");
-            PreparedStatement pstm = connection.prepareStatement("select * from item");
-            ResultSet rst = pstm.executeQuery();
-            JsonArrayBuilder allItems = Json.createArrayBuilder();
-            while (rst.next()) {
-                String code = rst.getString(1);
-                String item_name = rst.getString(2);
-                String quantity = rst.getString(3);
-                String unit_price = rst.getString(4);
-
-                JsonObjectBuilder itemObject = Json.createObjectBuilder();
-                itemObject.add("code", code);
-                itemObject.add("item_name", item_name);
-                itemObject.add("quantity", quantity);
-                itemObject.add("unit_price", unit_price);
-                allItems.add(itemObject.build());
-            }
-
-            resp.getWriter().print(allItems.build());
-
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -195,6 +160,91 @@ public class ItemServletAPI extends HttpServlet {
             resp.getWriter().print(response.build());
         }
     }
+
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String pathInfo = req.getPathInfo();
+
+        if (pathInfo == null || pathInfo.equals("/")) {
+            getAllItems(req, resp);
+        } else {
+            getSpecificItem(req, resp, pathInfo.substring(1)); // Assuming pathInfo is "/itemCode"
+        }
+    }
+
+    private void getAllItems(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.addHeader("Access-Control-Allow-Origin", "*");
+        resp.addHeader("Content-Type", "application/json");
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/spa", "root", "1234");
+            PreparedStatement pstm = connection.prepareStatement("select * from item");
+            ResultSet rst = pstm.executeQuery();
+            JsonArrayBuilder allItems = Json.createArrayBuilder();
+            while (rst.next()) {
+                String code = rst.getString(1);
+                String item_name = rst.getString(2);
+                String quantity = rst.getString(3);
+                String unit_price = rst.getString(4);
+
+                JsonObjectBuilder itemObject = Json.createObjectBuilder();
+                itemObject.add("code", code);
+                itemObject.add("item_name", item_name);
+                itemObject.add("quantity", quantity);
+                itemObject.add("unit_price", unit_price);
+                allItems.add(itemObject.build());
+            }
+
+            resp.getWriter().print(allItems.build());
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void getSpecificItem(HttpServletRequest req, HttpServletResponse resp, String itemCode) throws ServletException, IOException {
+        resp.addHeader("Access-Control-Allow-Origin", "*");
+        resp.addHeader("Content-Type", "application/json");
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/spa", "root", "1234");
+
+            PreparedStatement pstm = connection.prepareStatement("SELECT * FROM item WHERE code = ?");
+            pstm.setString(1, itemCode);
+
+            ResultSet rst = pstm.executeQuery();
+            if (rst.next()) {
+                String code = rst.getString(1);
+                String itemName = rst.getString(2);
+                String quantity = rst.getString(3);
+                String unitPrice = rst.getString(4);
+
+                JsonObjectBuilder itemObject = Json.createObjectBuilder();
+                itemObject.add("code", code);
+                itemObject.add("itemName", itemName);
+                itemObject.add("quantity", quantity);
+                itemObject.add("unitPrice", unitPrice);
+
+                resp.getWriter().print(itemObject.build());
+            } else {
+                resp.setStatus(404);  // Not found
+                resp.getWriter().print(Json.createObjectBuilder().add("error", "Item not found").build());
+            }
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
 
 
 

@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
 
 
 </head>
 <header>
-
     <!--nav logo-->
     <nav class="navbar navbar-expand-lg bg-light" style="background-color: #6c757d">
         <div class="container-fluid shadow p-3 mb-3 bg-body rounded">
@@ -81,8 +80,7 @@
                     <div class="col-12 col-md-6 col-lg-6">
                         <label class="form-label" for="inputCustomerID">Customer ID:</label>
                         <select aria-label="Default select example" class="form-select" id="inputCustomerID"
-                                onchange="setDetails(this.value)">
-
+                                onchange=setDetails(this.value)>
                         </select>
                     </div>
                     <div class="col-12 col-md-6 col-lg-6">
@@ -199,5 +197,251 @@
         </div>
     </section>
 </main>
+
+
+<script src="../assets/js/bootstrap.js"></script>
+<script src="../assets/js/jquery-3.6.1.min.js"></script>
+
+<script>
+
+    function loadCid() {
+        $.ajax({
+            url: 'http://localhost:8080/asignment/pages/customer',
+            success: function (customer) {
+                console.log(customer)
+                $.each(customer, function (index, value) {
+                    $('#inputCustomerID').append($('<option>', {
+                        value: value.cid,
+                        text: value.cid
+                    }));
+                });
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+
+    }
+
+    function loadItemId() {
+        $.ajax({
+            url: 'http://localhost:8080/asignment/pages/item',
+            success: function (item) {
+                // console.log(customer)
+                $.each(item, function (index, value) {
+                    $('#inputItemCode').append($('<option>', {
+                        value: value.code,
+                        text: value.code
+                    }));
+                });
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+
+    }
+
+    function setDetails(value) {
+        $.ajax({
+            url: 'http://localhost:8080/asignment/pages/customer/' + value,
+            success: function (customerDetails) {
+                if (customerDetails) {
+                    $('#customerName').val(customerDetails.name);
+                    $('#customerAddress').val(customerDetails.address);
+                    $('#customerSalary').val(customerDetails.salary);
+                } else {
+                    console.log("No customer details found for customer ID:", value);
+                }
+            },
+            error: function (error) {
+                console.log("Error fetching customer details:", error);
+            }
+        });
+    }
+
+    function setIDetails(value) {
+        $.ajax({
+            url: 'http://localhost:8080/asignment/pages/item/' + value,
+            success: function (itemDetails) {
+                if (itemDetails) {
+                    $('#itemName').val(itemDetails.itemName);
+                    $('#itemPrice').val(itemDetails.unitPrice);
+                    $('#qtyOnHand').val(itemDetails.quantity);
+                } else {
+                    console.log("No item details found for item code:", value);
+                }
+            },
+            error: function (error) {
+                console.log("Error fetching item details:", error);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        const newOrderId = generateOrderId();
+        $('#orderId').val(newOrderId);
+    });
+
+    function generateOrderId() {
+        return 'ORD-' + (new Date().getTime().toString(16) + Math.floor(1000 * Math.random()).toString(16));
+    }
+
+
+    loadCid();
+    loadItemId();
+
+    $("#btnAddToCart").click(function () {
+        let itemCode = $("#inputItemCode").val();
+        let itemName = $("#itemName").val();
+        let itmPrice = $("#itemPrice").val();
+        let qty = $("#buyQty").val();
+        let total = itmPrice * qty;
+
+
+        let existingRow = $("#orderTable").find(`tr[data-item-code='${itemCode}']`);
+
+        if (existingRow.length) {
+
+            let currentQty = parseInt(existingRow.find("td:eq(3)").text(), 10);
+            let currentTotal = parseInt(existingRow.find("td:eq(4)").text(), 10);
+            existingRow.find("td:eq(3)").text(currentQty + parseInt(qty, 10));
+            existingRow.find("td:eq(4)").text(currentTotal + parseInt(total, 10));
+        } else {
+
+            let row = `<tr data-item-code="${itemCode}"><td>${itemCode}</td><td>${itemName}</td><td>${itmPrice}</td><td>${qty}</td><td>${total}</td></tr>`;
+            $("#orderTable").append(row);
+        }
+
+
+        let fullTotal = 0;
+        $("#orderTable tr").each(function () {
+            let rowTotal = parseFloat($(this).find("td:eq(4)").text());
+            fullTotal += rowTotal;
+        });
+
+
+        $("#txtTotal").text(fullTotal.toFixed(2));
+
+
+    });
+
+
+    function calculateSubTotal() {
+
+        let fullTotal = 0;
+        $("#orderTable tr").each(function () {
+            let rowTotal = parseFloat($(this).find("td:eq(4)").text());
+            fullTotal += rowTotal;
+        });
+
+
+        let discountAmount = parseFloat($("#txtDiscount").val());
+        let subtotal = fullTotal - discountAmount;
+
+
+        if (subtotal < 0) {
+            subtotal = 0;
+        }
+
+
+        $("#txtSubTotal").text(subtotal.toFixed(2));
+    }
+
+
+    function calculateBalance() {
+
+        let fullTotal = 0;
+        $("#orderTable tr").each(function () {
+            let rowTotal = parseFloat($(this).find("td:eq(4)").text());
+            fullTotal += rowTotal;
+        });
+
+
+        let discountAmount = parseFloat($("#txtDiscount").val());
+        let amountAfterDiscount = fullTotal - discountAmount;
+
+
+        if (amountAfterDiscount < 0) {
+            amountAfterDiscount = 0;
+        }
+
+
+        let cashGiven = parseFloat($("#txtCash").val());
+        let balance = cashGiven - amountAfterDiscount;
+
+
+        $("#txtBalance").val(balance.toFixed(2));
+    }
+
+    function placeOrder() {
+
+        // 1. Gather data
+        let customerID = $('#inputCustomerID').val();
+        let orderDate = $('#orderDate').val();
+        let totalAmount = $('#txtSubTotal').text();
+
+        let items = [];
+        $("#orderTable tr").each(function () {
+            let itemCode = $(this).find("td:eq(0)").text();
+            let itemName = $(this).find("td:eq(1)").text();
+            let unitPrice = $(this).find("td:eq(2)").text();
+            let quantity = $(this).find("td:eq(3)").text();
+            items.push({
+                code: itemCode,
+                name: itemName,
+                price: unitPrice,
+                qty: quantity
+            });
+
+        });
+let oid = $("#orderId").val();
+
+        let orderData = {
+            orderId:oid,
+            customerID: customerID,
+            date: orderDate,
+            total: totalAmount,
+            items: items
+        };
+        console.log(orderData);
+
+        // 2. Send data to the server
+
+        $.ajax({
+            url: 'http://localhost:8080/asignment/pages/placeOrder',
+            method: 'post',
+            data: JSON.stringify(orderData),
+            contentType: 'application/json',
+            success: function (response) {
+                if (response.success) {
+                    alert('Order placed successfully!');
+                } else {
+                    alert('Error placing order: ' + response.message);
+                }
+            },
+            error: function (err) {
+                alert('Error connecting to server.');
+            }
+        });
+    }
+
+    // Assuming you have a button with id 'btnPlaceOrder'
+    $("#btnPlaceOrder").click(placeOrder);
+
+
+    $("#txtDiscount").keydown(function (event) {
+
+        if (event.keyCode == 13) {
+            event.preventDefault();
+
+
+            calculateSubTotal();
+            calculateBalance();
+        }
+    });
+
+</script>
+
 </body>
 </html>
